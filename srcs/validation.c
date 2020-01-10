@@ -1,5 +1,31 @@
 #include "lemin.h"
 
+static void		check_ants_amount(char *line)
+{
+	if (!ft_isdigit(line[0]) || line[0] == '-')
+	{
+		ft_memdel(&line);
+		error_exit();
+	}
+}
+
+static void		node_validation(t_valid *vd, char *line)
+{
+	if (!ft_strcmp(line, "##start"))
+	{
+		if (vd->start > 0)
+			error_exit(); // multiple start nodes
+		vd->start = 1;
+	}
+	else if (!ft_strcmp(line, "##start"))
+	{
+		if (vd->end > 0)
+			error_exit(); // multiple end nodes
+		vd->end = 1;
+		save_str_to_lst();
+	}
+}
+
 void			validation(t_lemin *lem)
 {
 	t_valid		vd;
@@ -14,12 +40,15 @@ void			validation(t_lemin *lem)
 		if (tmp2 == 1)
 		{
 			tmp2 = 0;
-			check_ants_amount();
-
+			check_ants_amount(line);
+			vd->save = ;
 		}
 		else if (line[0] == '#' && line[1] != '#')
+		{
 			// just skip
-		else if ()
+		}
+		else if (!ft_strchr(line, '-'))
+			node_validation(&vd, line);
 
 	}
 	if (tmp == -1)

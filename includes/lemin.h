@@ -36,11 +36,24 @@ typedef struct		s_lemin
 	t_node		*end;
 }					t_lemin;
 
+typedef struct			s_lst_save
+{
+	char				*str;
+	struct s_lst_save	*next;
+}						t_lst_save;
+
+typedef struct		s_save
+{
+	t_lst_save		*head;
+	t_lst_save		*lst;
+}					t_save;
+
 typedef struct		s_valid
 {
 	int			start;
 	int			end;
 	int			nodes_amount;
+	t_save		*save;
 }					t_valid;
 
 #endif
